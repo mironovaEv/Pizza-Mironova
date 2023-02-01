@@ -1,0 +1,211 @@
+body{
+    background: #191F2C;
+    background-image: url(../img/texture.png);
+    background-repeat: repeat;
+    margin: 0;
+    
+}
+.wrapper{
+    position: relative;
+    min-width: 960px;
+    min-height: 700px;
+}
+
+
+#pngfuel{
+    position: absolute;
+    margin-left: 1229px;
+    
+}
+#pepper{
+    position: absolute;
+    margin-left: 220px;
+    margin-top: 160px;
+}
+#pnghut{
+    position: absolute;
+    margin-top: 290px;
+}
+#garlic{
+    position: absolute;
+    margin-top: 610px;
+}
+#tomatoes{
+    position: absolute;
+    margin-top: 340px;
+    margin-left: 1200px;
+}
+#bean{
+
+    position: absolute;
+    right: 0;
+    margin-top: 788px;
+}
+.pizza{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+#dough{
+    margin-top: 511px;
+}
+#sause{
+    margin-top: 550px;
+}
+#cheese{
+    margin-top: 570px;
+}
+#pepperoni{
+    margin-top: 577px;
+}
+#red-peppers{
+    margin-top: 595px;
+}
+#meatballs{
+    margin-top: 592px;
+}
+#bacon{
+    margin-top: 537px;
+}
+.circle-container{
+    height: 400px;
+    width: 775px;
+    margin-top: 510px;
+    overflow: hidden;
+}
+.circle{
+    top: 220px;
+    height: 770px;
+    width: 770px;
+    border-radius: 50%;
+    border: 0.1em solid #FFF;
+}
+
+.circle-container2{
+    height: 640px;
+    width: 1050px;
+    margin-top: 270px;
+    overflow: hidden;
+    
+}
+.circle2{
+    margin-top: 15px;
+}
+.ingredients-container{
+    position: absolute;
+    margin-top: 285px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 1250px;
+    height: 625px;
+}
+.ingredients{
+    position:absolute;
+}
+#olives{
+    margin-top: 375px;
+    margin-left: 30px;
+}
+#mini-cheese{
+    margin-top: 240px;
+    margin-left: 130px;
+}
+#mini-peppers{
+    margin-top: 105px;
+    margin-left: 275px;
+}
+#mini-peppers2{
+    margin-top: 105px;
+    margin-left: 275px;
+    transform: rotate(25deg);
+}
+#mini-pepp{
+    margin-top: 50px;
+    margin-left: 500px;
+}
+#mini-bacon{
+    margin-top: 30px;
+    margin-left: 690px;
+}
+#mini-bacon2{
+    margin-top: 30px;
+    margin-left: 675px; 
+    transform: rotate(25deg);
+}
+#chicken{
+    margin-top: 125px;
+    margin-left: 890px;
+}
+#beef{
+    margin-top: 260px;
+    margin-left: 1000px;
+}
+#sausage{
+    margin-top: 420px;
+    margin-left: 1060px;
+}
+.order-button{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 60px;
+    width: 210px;
+    height: 60px;
+    left: 0;
+    right: 0;
+    border-radius: 100px;
+    background:  #F6B716;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size:20px;
+    border: 0;
+    margin-top: 750px;
+
+}
+#order-button:hover{
+    cursor: pointer;
+    background: #dea514;
+}
+
+a{
+    text-decoration: none;
+}
+.navbar-container{
+    display: flex;
+    align-items: center;
+}
+.navbar-container ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+.navbar-container a{
+    color: white;
+}
+.navbar-container .brand{
+    display: block;
+    padding: 0 24px;
+}
+.navbar-container ul li a{
+    padding: 24px;
+    display: block;
+}
+.navbar-link{
+    font-family: 'Inter', sans-serif;
+}
+
+.brand{
+    font-family: 'Bodoni Modo', serif;
+    font-size: 24px;
+}
+#main-link{
+   text-decoration: underline;
+}
+
