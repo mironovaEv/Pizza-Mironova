@@ -4,7 +4,7 @@ html, body{
 }
 .header{
     background: #191F2C;
-    background-image: url(../img/texture.png);
+    background-image: url(../img/ImgForBackground/texture.png);
     background-repeat: repeat;
 }
 a{
@@ -45,7 +45,7 @@ a{
     font-family: 'Bodoni Modo', serif;
     font-size: 24px;
 }
-#pepper{
+.pepper{
     height: 70px;
     width: auto;
     left: 250px;
@@ -53,7 +53,7 @@ a{
     position: absolute;
     transform: rotate(-5deg);
 }
-#pngfuel{
+.salad{
     position: absolute;
     height: 105px;
     width: auto;
@@ -73,7 +73,7 @@ a{
 .footer-items{
     color: white;
 }
-#footer-brand{
+.footer-brand{
     font-family: 'Bodoni Modo', serif;
     font-size: 22px;
 
@@ -95,11 +95,11 @@ p{
 .content-container{
     flex: 1 0 auto;
 }
-#body-vector1{
+.background-vector-left{
     position: absolute;
     margin-top: 40px;
 }
-#body-vector2{
+.background-vector-right{
     position: absolute;
     margin-top: 50px;
     right: 0;
@@ -178,7 +178,11 @@ p{
     margin-right: auto;
 
 }
-#main-link{
+.main-link{
     text-decoration: underline;
+ }
+ .selected{
+    background: #F6B716;
+    color: white;
  }
  
