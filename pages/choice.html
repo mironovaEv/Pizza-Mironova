@@ -51,19 +51,19 @@
         <div class="menu-container container">
           <h1 class="heading">Выбрать пиццу</h1>
           <div class="categories">
-            <button type="button" class="category-button selected">Рекомендуем</button>
-            <button type="button" class="category-button">Новинки</button>
-            <button type="button" class="category-button">Острые</button>
-            <button type="button" class="category-button">Вегетарианские</button>
+            <button type="button" class="category-button selected" id="recommend-button">Рекомендуем</button>
+            <button type="button" class="category-button" id="new-button">Новинки</button>
+            <button type="button" class="category-button" id="spicy-button">Острые</button>
+            <button type="button" class="category-button" id="vegetarian-button">Вегетарианские</button>
           </div>
           <div class="card d-none col-3 mb-3" id="menu-item-template" style="width: 300px; border-radius: 15px">
-            <img class="card-img-top pizza-img" src="img/pizza.png" alt="Card image" />
+            <img class="card-img-top pizza-img" src="" alt="Card image" />
             <div class="card-body">
               <div class="pizza-name-size">
                 <h5 class="card-title pizza-name">Карбонара</h5>
                 <p class="pizza-size">30см</p>
               </div>
-              <p class="card-text pizza-card-text">
+              <p class="card-text pizza-card-text pizza-ingredients">
                 Бекон, сыры чеддер и пармезан, моцарелла, томаты, красный лук, чеснок
               </p>
               <div class="pizza-card-bottom">

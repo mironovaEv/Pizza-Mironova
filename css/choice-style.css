@@ -131,7 +131,7 @@ p {
 .pizza-items {
   padding: 70px 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .pizza-title {
   padding-top: 0;
