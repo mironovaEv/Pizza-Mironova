@@ -1,0 +1,28 @@
+{
+  "name": "pizza-mironova",
+  "version": "1.0.0",
+  "description": "Данный репозиторий содержит две ветки pizza и rsp. При выполнении индивидуальных заданий необходимо создавать pull request в необходимую ветку, при выполнение задания **🍕 Заказать пиццу** в ветку pizza, **🪨 Камень ✂️ ножницы 📑 бумага** в ветку rsp.",
+  "main": ".prettierrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mironovaEv/Pizza-Mironova.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mironovaEv/Pizza-Mironova/issues"
+  },
+  "homepage": "https://github.com/mironovaEv/Pizza-Mironova#readme",
+  "devDependencies": {
+    "eslint": "^8.33.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1"
+  }
+}
