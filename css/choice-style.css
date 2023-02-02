@@ -158,9 +158,9 @@ p {
   font-family: 'Inter', sans-serif;
 }
 .bag-icon {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
-.basket-button {
+.add-to-basket-button {
   margin: 10px auto 0;
   display: block;
   background: white;
@@ -178,7 +178,8 @@ p {
 .main-link {
   text-decoration: underline;
 }
-.selected {
+.selected-category,
+.selected-pizza {
   background: #f6b716;
   color: white;
 }

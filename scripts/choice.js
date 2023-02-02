@@ -8,39 +8,81 @@ async function loadMenu (category) {
   for (const pizza of pizzas) {
     const block = template.clone()
     const ingredients = pizza.ingredients
+    const basket = JSON.parse(localStorage.getItem('basket'))
+    if (!!basket && basket.includes(String(pizza.id))) {
+      block.find('.add-to-basket-button').addClass('selected-pizza')
+    }
     block.find('.pizza-name').text(pizza.name)
     block.find('.pizza-price').text(pizza.price.default + ' ₽')
     block.find('.pizza-img').attr('src', pizza.img)
     block.find('.pizza-ingredients').text(ingredients.join(', '))
+    block.attr('pizza-id', pizza.id)
     block.removeClass('d-none')
     $('#pizza-items-container').append(block)
   }
 }
-function deleteSelected () {
-  const selectedElems = document.getElementsByClassName('selected')
-  while (selectedElems.length) selectedElems[0].classList.remove('selected')
+function deleteSelectedCategory () {
+  const selectedElems = document.getElementsByClassName('selected-category')
+  while (selectedElems.length) selectedElems[0].classList.remove('selected-category')
+}
+
+function addToBasket (id) {
+  let basket = JSON.parse(localStorage.getItem('basket'))
+  if (!basket) basket = []
+  basket.push(id)
+  console.log(basket)
+  localStorage.setItem('basket', JSON.stringify(basket))
+}
+function deleteFromBasket (id) {
+  const basket = JSON.parse(localStorage.getItem('basket'))
+  const index = basket.indexOf(id)
+  if (index >= 0) {
+    basket.splice(index, 1)
+  }
+  console.log(basket)
+  localStorage.setItem('basket', JSON.stringify(basket))
+}
+function updateBasketSize () {
+  const basket = JSON.parse(localStorage.getItem('basket'))
+  const basketSize = basket.length
+  if (basketSize > 0) {
+    $('#create-order-link').text('Оформить заказ (' + basketSize + ')')
+  } else {
+    $('#create-order-link').text('Оформить заказ')
+  }
 }
 
 $(document).ready(function () {
+  localStorage.setItem('basket', null)
   loadMenu()
   $('#new-button').click(function () {
-    deleteSelected()
-    $('#new-button').addClass('selected')
+    deleteSelectedCategory()
+    $('#new-button').addClass('selected-category')
     loadMenu('new')
   })
   $('#spicy-button').click(function () {
-    deleteSelected()
-    $('#spicy-button').addClass('selected')
+    deleteSelectedCategory()
+    $('#spicy-button').addClass('selected-category')
     loadMenu('spicy')
   })
   $('#vegetarian-button').click(function () {
-    deleteSelected()
-    $('#vegetarian-button').addClass('selected')
+    deleteSelectedCategory()
+    $('#vegetarian-button').addClass('selected-category')
     loadMenu('vegetarian')
   })
   $('#recommend-button').click(function () {
-    deleteSelected()
-    $('#recommend-button').addClass('selected')
+    deleteSelectedCategory()
+    $('#recommend-button').addClass('selected-category')
     loadMenu('')
+  })
+  $('body').on('click', '.add-to-basket-button', function () {
+    if ($(this).hasClass('selected-pizza')) {
+      $(this).removeClass('selected-pizza')
+      deleteFromBasket($(this).parents('#menu-item-template').attr('pizza-id'))
+    } else {
+      addToBasket($(this).parents('#menu-item-template').attr('pizza-id'))
+      $(this).addClass('selected-pizza')
+    }
+    updateBasketSize()
   })
 })
