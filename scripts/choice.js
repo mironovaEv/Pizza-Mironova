@@ -1,88 +1,89 @@
-async function loadMenu (category) {
-  $('#pizza-items-container').empty()
+async function loadMenu(category) {
+  $('#pizza-items-container').empty();
   const response = await fetch(
-    'https://shift-winter-2023-backend.onrender.com/api/pizza?' + new URLSearchParams({ classifications: category })
-  )
-  const pizzas = await response.json()
-  const template = $('#menu-item-template')
+    'https://shift-winter-2023-backend.onrender.com/api/pizza?' + new URLSearchParams({ classifications: category }),
+  );
+  const pizzas = await response.json();
+  const template = $('#menu-item-template');
   for (const pizza of pizzas) {
-    const block = template.clone()
-    const ingredients = pizza.ingredients
-    const basket = JSON.parse(localStorage.getItem('basket'))
+    const block = template.clone();
+    const ingredients = pizza.ingredients;
+    const basket = JSON.parse(localStorage.getItem('basket'));
     if (!!basket && basket.includes(String(pizza.id))) {
-      block.find('.add-to-basket-button').addClass('selected-pizza')
+      block.find('.add-to-basket-button').addClass('selected-pizza');
     }
-    block.find('.pizza-name').text(pizza.name)
-    block.find('.pizza-price').text(pizza.price.default + ' ₽')
-    block.find('.pizza-img').attr('src', pizza.img)
-    block.find('.pizza-ingredients').text(ingredients.join(', '))
-    block.attr('pizza-id', pizza.id)
-    block.removeClass('d-none')
-    $('#pizza-items-container').append(block)
+    block.find('.pizza-name').text(pizza.name);
+    block.find('.pizza-price').text(pizza.price.default + ' ₽');
+    block.find('.pizza-img').attr('src', pizza.img);
+    block.find('.pizza-ingredients').text(ingredients.join(', '));
+    block.attr('pizza-id', pizza.id);
+    block.removeClass('d-none');
+    $('#pizza-items-container').append(block);
   }
 }
-function deleteSelectedCategory () {
-  const selectedElems = document.getElementsByClassName('selected-category')
-  while (selectedElems.length) selectedElems[0].classList.remove('selected-category')
+function deleteSelectedCategory() {
+  const selectedElems = document.getElementsByClassName('selected-category');
+  while (selectedElems.length) selectedElems[0].classList.remove('selected-category');
 }
 
-function addToBasket (id) {
-  let basket = JSON.parse(localStorage.getItem('basket'))
-  if (!basket) basket = []
-  basket.push(id)
-  console.log(basket)
-  localStorage.setItem('basket', JSON.stringify(basket))
+function addToBasket(id) {
+  let basket = JSON.parse(localStorage.getItem('basket'));
+  if (!basket) basket = [];
+  basket.push(id);
+  console.log(basket);
+  localStorage.setItem('basket', JSON.stringify(basket));
 }
-function deleteFromBasket (id) {
-  const basket = JSON.parse(localStorage.getItem('basket'))
-  const index = basket.indexOf(id)
+function deleteFromBasket(id) {
+  const basket = JSON.parse(localStorage.getItem('basket'));
+  const index = basket.indexOf(id);
   if (index >= 0) {
-    basket.splice(index, 1)
+    basket.splice(index, 1);
   }
-  console.log(basket)
-  localStorage.setItem('basket', JSON.stringify(basket))
+  console.log(basket);
+  localStorage.setItem('basket', JSON.stringify(basket));
 }
-function updateBasketSize () {
-  const basket = JSON.parse(localStorage.getItem('basket'))
-  const basketSize = basket.length
+function updateBasketSize() {
+  const basket = JSON.parse(localStorage.getItem('basket'));
+  const basketSize = basket.length;
   if (basketSize > 0) {
-    $('#create-order-link').text('Оформить заказ (' + basketSize + ')')
+    $('#create-order-link').text('Оформить заказ (' + basketSize + ')');
   } else {
-    $('#create-order-link').text('Оформить заказ')
+    $('#create-order-link').text('Оформить заказ');
   }
 }
 
 $(document).ready(function () {
-  localStorage.setItem('basket', null)
-  loadMenu()
+  updateBasketSize();
+  //localStorage.setItem('basket', null)
+  loadMenu();
   $('#new-button').click(function () {
-    deleteSelectedCategory()
-    $('#new-button').addClass('selected-category')
-    loadMenu('new')
-  })
+    deleteSelectedCategory();
+    $('#new-button').addClass('selected-category');
+    loadMenu('new');
+  });
   $('#spicy-button').click(function () {
-    deleteSelectedCategory()
-    $('#spicy-button').addClass('selected-category')
-    loadMenu('spicy')
-  })
+    deleteSelectedCategory();
+    $('#spicy-button').addClass('selected-category');
+    loadMenu('spicy');
+  });
   $('#vegetarian-button').click(function () {
-    deleteSelectedCategory()
-    $('#vegetarian-button').addClass('selected-category')
-    loadMenu('vegetarian')
-  })
+    deleteSelectedCategory();
+    $('#vegetarian-button').addClass('selected-category');
+    loadMenu('vegetarian');
+  });
   $('#recommend-button').click(function () {
-    deleteSelectedCategory()
-    $('#recommend-button').addClass('selected-category')
-    loadMenu('')
-  })
+    deleteSelectedCategory();
+    $('#recommend-button').addClass('selected-category');
+    loadMenu('');
+  });
   $('body').on('click', '.add-to-basket-button', function () {
     if ($(this).hasClass('selected-pizza')) {
-      $(this).removeClass('selected-pizza')
-      deleteFromBasket($(this).parents('#menu-item-template').attr('pizza-id'))
+      $(this).removeClass('selected-pizza');
+      deleteFromBasket($(this).parents('#menu-item-template').attr('pizza-id'));
     } else {
-      addToBasket($(this).parents('#menu-item-template').attr('pizza-id'))
-      $(this).addClass('selected-pizza')
+      addToBasket($(this).parents('#menu-item-template').attr('pizza-id'));
+      $(this).addClass('selected-pizza');
     }
-    updateBasketSize()
-  })
-})
+    updateBasketSize();
+  });
+});
