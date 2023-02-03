@@ -30,8 +30,7 @@ function deleteSelectedCategory() {
 }
 
 function addToBasket(id) {
-  let basket = JSON.parse(localStorage.getItem('basket'));
-  if (!basket) basket = [];
+  let basket = JSON.parse(localStorage.getItem('basket')) ?? [];
   basket.push({ id, count: 1, price: 0 });
   localStorage.setItem('basket', JSON.stringify(basket));
 }
@@ -42,14 +41,15 @@ function deleteFromBasket(id) {
   if (index >= 0) {
     basket.splice(index, 1);
   }
-  // console.log(basket);
   localStorage.setItem('basket', JSON.stringify(basket));
 }
 function updateBasketSize() {
-  const basket = JSON.parse(localStorage.getItem('basket'));
+  const basket = JSON.parse(localStorage.getItem('basket')) ?? [];
   let basketSize = 0;
-  for (const element of basket) {
-    basketSize += Number(element.count);
+  if (!!basket) {
+    for (const element of basket) {
+      basketSize += Number(element.count);
+    }
   }
   if (basketSize > 0) {
     $('#create-order-link').text('Оформить заказ (' + basketSize + ')');
@@ -60,7 +60,6 @@ function updateBasketSize() {
 
 $(document).ready(function () {
   updateBasketSize();
-  // localStorage.setItem('basket', null);
   loadMenu();
   $('#new-button').click(function () {
     deleteSelectedCategory();

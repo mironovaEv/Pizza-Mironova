@@ -90,8 +90,8 @@
           <div id="pizza-items"></div>
         </section>
         <section class="user-data">
-          <p class="order-info">Контактные данные</p>
-          <form class="row user-info-form">
+          <p class="order-info form-title">Контактные данные</p>
+          <form class="row user-info-form form">
             <div class="mb-3 col-md-3">
               <input
                 type="text"
@@ -118,8 +118,8 @@
           </form>
         </section>
         <section class="delivery-address">
-          <p class="order-info delivery-address-title">Адрес доставки</p>
-          <form class="row delivery-address-form">
+          <p class="order-info delivery-address-title form-title">Адрес доставки</p>
+          <form class="row delivery-address-form form">
             <div class="mb-3 col-md-3">
               <input type="text" class="form-control" placeholder="Город" id="inputCity" name="city" />
             </div>
@@ -140,6 +140,11 @@
               <textarea class="form-control" placeholder="Заметки для курьера" id="inputComment" rows="3"></textarea>
             </div>
           </form>
+          <div class="result-container d-none">
+            <p class="result-title">Ваш заказ принят!</p>
+            <img class="result-img" src="../img/ImgForBackground/result-img.png" />
+            <p class="result-text">Доставим по указанному адресу в течение 30 минут</p>
+          </div>
           <button type="button" class="create-order-button col-md-3">Отправить заказ</button>
         </section>
       </main>

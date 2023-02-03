@@ -188,3 +188,18 @@ p {
 .create-order-button:hover {
   background: var(--light-main-bg);
 }
+.result-container {
+  margin-top: 70px;
+  text-align: center;
+  margin-bottom: 200px;
+}
+.result-title,
+.result-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+.result-img {
+  margin-left: 35px;
+  min-height: 350px;
+}

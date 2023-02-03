@@ -1,5 +1,5 @@
 function updateBasketSize() {
-  const basket = JSON.parse(localStorage.getItem('basket'));
+  const basket = JSON.parse(localStorage.getItem('basket')) ?? [];
   let basketSize = 0;
   for (const element of basket) {
     basketSize += Number(element.count);
@@ -13,7 +13,7 @@ function updateBasketSize() {
 }
 
 async function loadBasket() {
-  const basket = JSON.parse(localStorage.getItem('basket'));
+  const basket = JSON.parse(localStorage.getItem('basket')) ?? [];
   for (const pizza of basket) {
     const response = await fetch('https://shift-winter-2023-backend.onrender.com/api/pizza/' + pizza.id);
     const pizzaInfo = await response.json();
@@ -64,6 +64,15 @@ function updateBasketSumAndCount() {
   }
   return { sum: basketSum, count: basketCount };
 }
+function showResult() {
+  $('.number-input').addClass('d-none');
+  $('.delete-button').addClass('d-none');
+  $('.form').addClass('d-none');
+  $('.form-title').addClass('d-none');
+  $('.create-order-button').addClass('d-none');
+  $('.result-container').removeClass('d-none');
+  localStorage.setItem('basket', null);
+}
 
 async function createOrder() {
   const basket = JSON.parse(localStorage.getItem('basket'));
@@ -110,7 +119,9 @@ async function createOrder() {
     },
     body: JSON.stringify(data),
   });
-  console.log(response.json());
+  if (response.ok) {
+    showResult();
+  }
 }
 
 $(document).ready(function () {

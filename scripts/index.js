@@ -1,5 +1,5 @@
 function updateBasketSize() {
-  const basket = JSON.parse(localStorage.getItem('basket'));
+  const basket = JSON.parse(localStorage.getItem('basket')) ?? [];
   let basketSize = 0;
   for (const element of basket) {
     basketSize += Number(element.count);
