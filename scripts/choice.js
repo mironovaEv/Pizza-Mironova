@@ -33,8 +33,7 @@ function deleteSelectedCategory() {
 function addToBasket(id) {
   let basket = JSON.parse(localStorage.getItem('basket'));
   if (!basket) basket = [];
-  basket.push({ id: id, count: 1 });
-  //console.log(basket);
+  basket.push({ id: id, count: 1, price: 0 });
   localStorage.setItem('basket', JSON.stringify(basket));
 }
 function deleteFromBasket(id) {

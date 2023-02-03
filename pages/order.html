@@ -48,7 +48,17 @@
       <main class="content-container container">
         <h1 class="heading">Оформить заказ</h1>
         <section class="basket-list">
-          <p class="order-sum">4 товара на 1398 ₽</p>
+          <div class="order-info-container">
+            <div class="order-sum-container">
+              <p class="order-info">Cумма заказа:</p>
+              <p class="order-info" id="order-sum">0</p>
+              <p class="order-info">₽</p>
+            </div>
+            <div class="order-count-container">
+              <p class="order-info">Количество товаров:</p>
+              <p class="order-info" id="order-count">0</p>
+            </div>
+          </div>
           <div class="card mb-3 d-none" id="basket-item-template">
             <div class="row g-0">
               <div class="col-md-1">
