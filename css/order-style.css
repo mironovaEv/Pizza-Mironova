@@ -38,7 +38,7 @@ p {
   font-family: 'Inter', sans-serif;
   font-size: 32px;
   font-weight: 400;
-  margin-top: 130px;
+  margin-top: 100px;
   margin-bottom: 30px;
   margin-right: 10px;
 }
@@ -158,4 +158,33 @@ p {
   line-height: 20px;
   cursor: pointer;
   transition: 0.3s;
+}
+.form-check {
+  display: flex;
+}
+.form-check-input,
+.form-check-label {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+}
+.delivery-address-title {
+  margin-top: 50px;
+}
+.form-control {
+  border-radius: 10px;
+}
+.create-order-button {
+  background: var(--main-bg-color);
+  color: white;
+  min-width: 360px;
+  min-height: 70px;
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  border-radius: 32px;
+  margin-bottom: 30px;
+}
+.create-order-button:hover {
+  background: var(--light-main-bg);
 }
