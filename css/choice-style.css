@@ -1,51 +1,16 @@
 html,
 body {
-  margin: 0;
   height: 100%;
 }
-.header {
-  background: #191f2c;
-  background-image: url(../img/ImgForBackground/texture.png);
-  background-repeat: repeat;
-}
-a {
-  text-decoration: none;
-}
-.navbar-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-.navbar-container ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-}
-.navbar-container a {
-  color: white;
+
+.navbar-container ul li a {
+  padding: 24px;
+  display: block;
 }
 .navbar-container .brand {
-  display: block;
-  padding: 23px;
+  padding: 18px;
 }
-.navbar-container ul li a {
-  padding: 28px;
-  display: block;
-}
-.navbar-link {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  font-family: 'Inter', sans-serif;
-}
-.brand {
-  position: absolute;
-  left: 0;
-  font-family: 'Bodoni Modo', serif;
-  font-size: 24px;
-}
+
 .pepper {
   height: 70px;
   width: auto;
@@ -60,34 +25,7 @@ a {
   width: auto;
   right: 0;
 }
-.footer {
-  background: #191f2c;
-  flex: 0 0 auto;
-}
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  vertical-align: middle;
-  text-align: center;
-}
-.footer-items {
-  color: white;
-}
-.footer-brand {
-  font-family: 'Bodoni Modo', serif;
-  font-size: 22px;
-}
-.left-footer {
-  padding: 18px 0;
-}
-.right-footer {
-  display: flex;
-  align-items: center;
-}
-.footer-icons {
-  color: white;
-  margin: 0 20px;
-}
+
 p {
   margin-bottom: 0.2em;
 }
@@ -120,7 +58,7 @@ p {
 }
 .category-button {
   border-radius: 45px;
-  background: #eceef6;
+  background: var(--button-light-bg);
   border: 0;
   font-weight: 600;
   padding: 10px;
@@ -164,7 +102,7 @@ p {
   margin: 10px auto 0;
   display: block;
   background: white;
-  border: 2px #eceef6 solid;
+  border: 2px var(--button-light-bg) solid;
   border-radius: 100%;
 }
 .pizza-card-bottom {
@@ -175,11 +113,8 @@ p {
   margin-left: auto;
   margin-right: auto;
 }
-.main-link {
-  text-decoration: underline;
-}
 .selected-category,
 .selected-pizza {
-  background: #f6b716;
+  background: var(--button-yellow-bg);
   color: white;
 }

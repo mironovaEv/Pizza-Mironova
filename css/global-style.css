@@ -1,0 +1,89 @@
+:root {
+  --main-bg-color: #191f2c;
+  --button-light-bg: #eceef6;
+  --button-yellow-bg: #f6b716;
+  --button-hover-yellow: #dea514;
+}
+
+body {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+.header {
+  background: #191f2c;
+  background-image: url(../img/ImgForBackground/texture.png);
+  background-repeat: repeat;
+}
+.main-link {
+  text-decoration: underline;
+}
+.order-button {
+  border: 0;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+}
+.navbar-container ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+.navbar-container a {
+  color: white;
+}
+.navbar-link {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  font-family: 'Inter', sans-serif;
+}
+.brand {
+  position: absolute;
+  left: 0;
+  font-family: 'Bodoni Modo', serif;
+  font-size: 24px;
+}
+.navbar-container .brand {
+  display: block;
+  padding: 23px;
+}
+.navbar-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+button:hover {
+  cursor: pointer;
+}
+.footer {
+  background: #191f2c;
+  flex: 0 0 auto;
+}
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+  text-align: center;
+}
+.footer-items {
+  color: white;
+}
+.footer-brand {
+  font-family: 'Bodoni Modo', serif;
+  font-size: 22px;
+}
+.left-footer {
+  padding: 18px 0;
+}
+.right-footer {
+  display: flex;
+  align-items: center;
+}
+.footer-icons {
+  color: white;
+  margin: 0 20px;
+}

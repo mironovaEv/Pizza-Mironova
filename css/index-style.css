@@ -1,8 +1,7 @@
 body {
-  background: #191f2c;
+  background: var(--main-bg-color);
   background-image: url(../img/ImgForBackground/texture.png);
   background-repeat: repeat;
-  margin: 0;
 }
 
 header {
@@ -102,7 +101,7 @@ header {
   height: 770px;
   width: 770px;
   border-radius: 50%;
-  border: 0.1em solid #fff;
+  border: 0.1em solid white;
 }
 
 .big-circle-container {
@@ -187,66 +186,26 @@ header {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
   line-height: 60px;
   width: 210px;
   height: 60px;
   left: 0;
   right: 0;
   border-radius: 100px;
-  background: #f6b716;
-  color: white;
-  font-family: 'Inter', sans-serif;
+  background: var(--button-yellow-bg);
   font-size: 20px;
-  border: 0;
   margin-top: 820px;
 }
 
 .order-button:hover {
-  cursor: pointer;
-  background: #dea514;
-}
-
-a {
-  text-decoration: none;
+  background: var(--button-hover-yellow);
 }
 
 .navbar-container {
-  display: flex;
-  align-items: center;
-}
-
-.navbar-container ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-}
-
-.navbar-container a {
-  color: white;
-}
-
-.navbar-container .brand {
-  display: block;
-  padding: 0 24px;
+  width: 100vw;
 }
 
 .navbar-container ul li a {
   padding: 24px;
   display: block;
-}
-
-.navbar-link {
-  font-family: 'Inter', sans-serif;
-}
-
-.brand {
-  font-family: 'Bodoni Modo', serif;
-  font-size: 24px;
-}
-
-.main-link {
-  text-decoration: underline;
 }
