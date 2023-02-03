@@ -87,3 +87,18 @@ button:hover {
   color: white;
   margin: 0 20px;
 }
+.background-vector-left {
+  position: absolute;
+  margin-top: 40px;
+}
+.background-vector-right {
+  position: absolute;
+  margin-top: 50px;
+  right: 0;
+}
+.heading {
+  margin-top: 60px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 48px;
+}

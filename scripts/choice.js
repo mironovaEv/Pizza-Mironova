@@ -9,8 +9,12 @@ async function loadMenu(category) {
     const block = template.clone();
     const ingredients = pizza.ingredients;
     const basket = JSON.parse(localStorage.getItem('basket'));
-    if (!!basket && basket.includes(String(pizza.id))) {
-      block.find('.add-to-basket-button').addClass('selected-pizza');
+    if (!!basket) {
+      const element = basket.find((x) => x.id == pizza.id);
+      //console.log(basket);
+      if (!!element) {
+        block.find('.add-to-basket-button').addClass('selected-pizza');
+      }
     }
     block.find('.pizza-name').text(pizza.name);
     block.find('.pizza-price').text(pizza.price.default + ' ₽');
@@ -29,22 +33,26 @@ function deleteSelectedCategory() {
 function addToBasket(id) {
   let basket = JSON.parse(localStorage.getItem('basket'));
   if (!basket) basket = [];
-  basket.push(id);
-  console.log(basket);
+  basket.push({ id: id, count: 1 });
+  //console.log(basket);
   localStorage.setItem('basket', JSON.stringify(basket));
 }
 function deleteFromBasket(id) {
   const basket = JSON.parse(localStorage.getItem('basket'));
-  const index = basket.indexOf(id);
+  const element = basket.find((x) => x.id === id);
+  const index = basket.indexOf(element);
   if (index >= 0) {
     basket.splice(index, 1);
   }
-  console.log(basket);
+  //console.log(basket);
   localStorage.setItem('basket', JSON.stringify(basket));
 }
 function updateBasketSize() {
   const basket = JSON.parse(localStorage.getItem('basket'));
-  const basketSize = basket.length;
+  let basketSize = 0;
+  for (const element of basket) {
+    basketSize += Number(element.count);
+  }
   if (basketSize > 0) {
     $('#create-order-link').text('Оформить заказ (' + basketSize + ')');
   } else {
@@ -54,7 +62,7 @@ function updateBasketSize() {
 
 $(document).ready(function () {
   updateBasketSize();
-  //localStorage.setItem('basket', null)
+  //localStorage.setItem('basket', null);
   loadMenu();
   $('#new-button').click(function () {
     deleteSelectedCategory();

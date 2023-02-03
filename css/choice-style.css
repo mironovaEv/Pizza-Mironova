@@ -32,26 +32,13 @@ p {
 .content-container {
   flex: 1 0 auto;
 }
-.background-vector-left {
-  position: absolute;
-  margin-top: 40px;
-}
-.background-vector-right {
-  position: absolute;
-  margin-top: 50px;
-  right: 0;
-}
+
 .wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100%;
 }
-.heading {
-  margin-top: 60px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 48px;
-}
+
 .categories {
   text-align: center;
   margin-top: 60px;

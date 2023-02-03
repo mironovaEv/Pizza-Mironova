@@ -12,7 +12,7 @@
       crossorigin="anonymous"
     />
     <link href="../css/global-style.css" rel="stylesheet" />
-    <link href="../css/choice-style.css" rel="stylesheet" />
+    <link href="../css/order-style.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&display=swap" rel="stylesheet" />
@@ -23,7 +23,6 @@
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   </head>
-
   <body>
     <header class="header">
       <nav class="navbar-container">
@@ -33,63 +32,56 @@
           <li class="navbar-item">
             <a class="navbar-link" href="../index.html">Главная</a>
           </li>
-          <li class="navbar-item main-link">
+          <li class="navbar-item">
             <a class="navbar-link" href="choice.html">Выбрать пиццу</a>
           </li>
-          <li class="navbar-item">
+          <li class="navbar-item main-link">
             <a class="navbar-link" id="create-order-link" href="order.html">Оформить заказ</a>
           </li>
         </ul>
         <img class="salad" src="../img/ImgForBackground/small-salad.png" />
       </nav>
     </header>
-
     <div class="wrapper">
-      <div class="content-container">
-        <img class="background-vector-left" src="../img/ImgForBackground/left-vector.png" />
-        <img class="background-vector-right" src="../img/ImgForBackground/right-vector.png" />
-
-        <div class="menu-container container">
-          <h1 class="heading">Выбрать пиццу</h1>
-          <div class="categories">
-            <button type="button" class="category-button selected-category" id="recommend-button">Рекомендуем</button>
-            <button type="button" class="category-button" id="new-button">Новинки</button>
-            <button type="button" class="category-button" id="spicy-button">Острые</button>
-            <button type="button" class="category-button" id="vegetarian-button">Вегетарианские</button>
-          </div>
-          <div class="card d-none col-3 mb-3" id="menu-item-template" style="width: 300px; border-radius: 15px">
-            <img class="card-img-top pizza-img" src="" alt="Card image" />
-            <div class="card-body">
-              <div class="pizza-name-size">
-                <h5 class="card-title pizza-name">Карбонара</h5>
-                <p class="pizza-size">30см</p>
+      <img class="background-vector-left" src="../img/ImgForBackground/left-vector.png" />
+      <img class="background-vector-right" src="../img/ImgForBackground/right-vector.png" />
+      <main class="content-container container">
+        <h1 class="heading">Оформить заказ</h1>
+        <section class="basket-list">
+          <p class="order-sum">4 товара на 1398 ₽</p>
+          <div class="card mb-3 d-none" id="basket-item-template">
+            <div class="row g-0">
+              <div class="col-md-1">
+                <img
+                  src="https://dodopizza-a.akamaihd.net/static/Img/Products/d6c9f93ea37649ac923e9586c034a5a0_138x138.jpeg"
+                  class="img-fluid rounded-start pizza-item-img"
+                  alt="..."
+                />
               </div>
-              <p class="card-text pizza-card-text pizza-ingredients">
-                Бекон, сыры чеддер и пармезан, моцарелла, томаты, красный лук, чеснок
-              </p>
-              <div class="pizza-card-bottom">
-                <p class="pizza-price">749 ₽</p>
-                <button class="add-to-basket-button">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-bag-fill bag-icon"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"
-                    />
-                  </svg>
-                </button>
+              <div class="col-md-7">
+                <div class="card-body">
+                  <h5 class="card-title pizza-item-name">Аррива!</h5>
+                  <p class="card-text">Средняя, 30см. Традиционное тесто</p>
+                </div>
+              </div>
+              <div class="col-md-2 item-price-container">
+                <p class="pizza-item-price">1398 ₽</p>
+              </div>
+              <div class="col-md-2 item-count-container">
+                <div class="def-number-input number-input safari_only">
+                  <button class="minus"></button>
+                  <input class="quantity pizza-items-count" min="1" name="quantity" value="1" type="number" />
+                  <button class="plus"></button>
+                </div>
+                <div class="delete-button">&times;</div>
               </div>
             </div>
           </div>
-          <div id="pizza-items-container" class="row pizza-items"></div>
-        </div>
-      </div>
+          <div id="pizza-items"></div>
+        </section>
+      </main>
     </div>
+
     <footer class="footer">
       <div class="container footer-container">
         <div class="left-footer">
@@ -142,6 +134,6 @@
       integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
       crossorigin="anonymous"
     ></script>
-    <script src="../scripts/choice.js"></script>
+    <script src="../scripts/order.js"></script>
   </body>
 </html>
