@@ -60,7 +60,8 @@ p {
 .item-count-container {
   display: flex;
 }
-.pizza-item-price {
+.pizza-item-price,
+.item-count-result {
   font-family: 'Inter', sans-serif;
   margin: auto;
   font-size: 24px;
@@ -161,11 +162,11 @@ p {
 }
 .form-check {
   display: flex;
+  margin-top: 10px;
+  margin-left: 5px;
 }
 .form-check-input,
 .form-check-label {
-  margin-top: auto;
-  margin-bottom: auto;
   margin-left: 10px;
 }
 .delivery-address-title {
@@ -202,4 +203,12 @@ p {
 .result-img {
   margin-left: 35px;
   min-height: 350px;
+}
+.feedback {
+  font-size: 12px;
+}
+.submit-feedback {
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-left: 85px;
 }

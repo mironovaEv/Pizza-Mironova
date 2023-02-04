@@ -71,56 +71,154 @@ function showResult() {
   $('.form-title').addClass('d-none');
   $('.create-order-button').addClass('d-none');
   $('.result-container').removeClass('d-none');
+  $('.item-count-result').removeClass('d-none');
+  const basket = JSON.parse(localStorage.getItem('basket')) ?? [];
+  for (const item of basket) {
+    $('[pizza-id="' + item.id + '"]')
+      .find('.item-count-result')
+      .text(item.count + ' шт.');
+  }
   localStorage.setItem('basket', null);
+}
+function checkLength(min, max, field) {
+  if (field.length < min) {
+    return 'Минимальное количество символов: ' + min;
+  }
+  if (field.length > max) {
+    return 'Максимальное количество символов: ' + max;
+  } else {
+    return '';
+  }
+}
+
+function showError(field, message) {
+  $('[name="' + field.name + '"]').css('border', '1px red solid');
+  $('.' + field.name + '-valid-feedback').text(message);
+  $('.' + field.name + '-valid-feedback').css('color', 'red');
+}
+function showOk(field) {
+  $('[name="' + field.name + '"]').css('border', '1px green solid');
+  $('.' + field.name + '-valid-feedback').text('');
+}
+function validate(array) {
+  let flag = true;
+  for (const field of array) {
+    if (checkLength(field.min, field.max, field.value) != '') {
+      showError(field, checkLength(field.min, field.max, field.value));
+      flag = false;
+    } else {
+      showOk(field);
+    }
+  }
+  return flag;
+}
+function checkBirthDate(birthDate) {
+  let today = new Date().toISOString();
+  const datePlus18 = new Date(birthDate);
+  datePlus18.setFullYear(datePlus18.getFullYear() + 18);
+  if (birthDate == '') {
+    $('#inputBirthDate').css('border', 'red 1px solid');
+    $('.birthDate-valid-feedback').text('Пожалуйста, укажите дату рождения.');
+    $('.birthDate-valid-feedback').css('color', 'red');
+    return false;
+  } else if (Number(birthDate.substr(0, 4)) < 1900 || new Date(birthDate + 'T00:00:00.000Z') > new Date(today)) {
+    $('#inputBirthDate').css('border', 'red 1px solid');
+    $('.birthDate-valid-feedback').text('Введена некорректная дата.');
+    $('.birthDate-valid-feedback').css('color', 'red');
+    return false;
+  } else if (datePlus18 > new Date()) {
+    $('#inputBirthDate').css('border', 'red 1px solid');
+    $('.birthDate-valid-feedback').text('Получателю должно быть больше 18 лет.');
+    $('.birthDate-valid-feedback').css('color', 'red');
+    return false;
+  } else {
+    $('.birthDate-valid-feedback').text('');
+    $('#inputBirthDate').css('border', 'green 1px solid');
+    return true;
+  }
+}
+function checkEmptyBasket() {
+  const basket = JSON.parse(localStorage.getItem('basket')) ?? [];
+  if (basket.length < 1) {
+    $('.submit-feedback').text('Ваша корзина пуста.');
+    $('.submit-feedback').css('color', 'red');
+    return false;
+  } else {
+    $('.submit-feedback').text('');
+    return true;
+  }
 }
 
 async function createOrder() {
-  const basket = JSON.parse(localStorage.getItem('basket'));
-  let pizzas = [];
-  for (const element of basket) {
-    for (let i = 0; i < element.count; i++) {
-      const pizza = new Object({ id: Number(element.id), size: 'small', crust: '' });
-      pizzas.push(pizza);
-    }
-  }
-  const firstName = $('#inputFirstname').val();
-  const lastName = $('#inputLastname').val();
+  const firstname = $('#inputFirstname').val().trim();
+  const lastname = $('#inputLastname').val().trim();
+  const city = $('#inputCity').val().trim();
+  const street = $('#inputStreet').val().trim();
+  const house = $('#inputHouse').val().trim();
   const birthDate = $('#inputBirthDate').val();
-  const city = $('#inputCity').val();
-  const street = $('#inputStreet').val();
-  const house = $('#inputHouse').val();
-  const apartment = $('#inputApartment').val();
-  if ($('#apartmentCheck').checked) apartment = '';
-  const comment = $('#inputComment').val();
-  const registrationAddress = JSON.stringify({ city: city, street: street, house: house, apartment: apartment });
-  const data = {
-    pizzas: pizzas,
-    details: {
-      user: {
-        firstname: firstName,
-        lastName: lastName,
-        birthDate: birthDate,
-        registrationAddress: registrationAddress,
+  let apartment = $('#inputApartment').val().trim();
+  let checkApartment = false;
+  if ($('#apartmentCheck').prop('checked')) {
+    checkApartment = true;
+    apartment = '';
+    showOk({ min: 1, max: 10, value: apartment, name: 'apartment' });
+  } else {
+    checkApartment = validate([{ min: 1, max: 10, value: apartment, name: 'apartment' }]);
+  }
+  const checkDate = checkBirthDate(birthDate) ? true : false;
+  const checkBasket = checkEmptyBasket() ? true : false;
+  if (
+    validate([
+      { min: 2, max: 30, value: firstname, name: 'firstname' },
+      { min: 2, max: 30, value: lastname, name: 'lastname' },
+      { min: 2, max: 50, value: city, name: 'city' },
+      { min: 2, max: 60, value: street, name: 'street' },
+      { min: 1, max: 10, value: house, name: 'house' },
+    ]) &&
+    checkApartment &&
+    checkDate &&
+    checkBasket
+  ) {
+    const basket = JSON.parse(localStorage.getItem('basket')) ?? [];
+    let pizzas = [];
+    for (const element of basket) {
+      for (let i = 0; i < element.count; i++) {
+        const pizza = new Object({ id: Number(element.id), size: 'small', crust: '' });
+        pizzas.push(pizza);
+      }
+    }
+    if ($('#apartmentCheck').checked) apartment = '';
+    const comment = $('#inputComment').val();
+    const registrationAddress = JSON.stringify({ city: city, street: street, house: house, apartment: apartment });
+    const data = {
+      pizzas: pizzas,
+      details: {
+        user: {
+          firstname: firstname,
+          lastName: lastname,
+          birthDate: birthDate,
+          registrationAddress: registrationAddress,
+        },
+        address: {
+          city: city,
+          street: street,
+          house: house,
+          apartment: apartment,
+          comment: comment,
+        },
       },
-      address: {
-        city: city,
-        street: street,
-        house: house,
-        apartment: apartment,
-        comment: comment,
+    };
+    const url = 'https://shift-winter-2023-backend.onrender.com/api/pizza/createOrder';
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    },
-  };
-  const url = 'https://shift-winter-2023-backend.onrender.com/api/pizza/createOrder';
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-  if (response.ok) {
-    showResult();
+      body: JSON.stringify(data),
+    });
+    if (response.ok) {
+      showResult();
+    }
   }
 }
 

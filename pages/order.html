@@ -78,6 +78,7 @@
                 <p class="pizza-item-price">1398 ₽</p>
               </div>
               <div class="col-md-2 item-count-container">
+                <div class="item-count-result d-none">2 шт.</div>
                 <div class="def-number-input number-input safari_only">
                   <button class="minus"></button>
                   <input class="quantity pizza-items-count" min="1" name="quantity" value="1" type="number" />
@@ -95,25 +96,23 @@
             <div class="mb-3 col-md-3">
               <input
                 type="text"
-                class="form-control"
+                class="form-control lastname"
                 placeholder="Фамилия"
                 id="inputLastname"
                 name="lastname"
                 aria-describedby="emailHelp"
               />
+              <div class="lastname-valid-feedback feedback"></div>
             </div>
             <div class="mb-3 col-md-2">
               <input type="text" placeholder="Имя" class="form-control" id="inputFirstname" name="firstname" />
+              <div class="firstname-valid-feedback feedback"></div>
             </div>
 
             <div class="mb-3 col-md-3">
-              <input
-                type="text"
-                placeholder="Дата рождения"
-                class="form-control"
-                id="inputBirthDate"
-                name="birthDate"
-              />
+              <input type="text" placeholder="Дата рождения" class="form-control" onfocus="(this.type='date')"
+              onblur="if(this.value==''){this.type='text'}"" id="inputBirthDate" name="birthDate" />
+              <div class="birthDate-valid-feedback feedback"></div>
             </div>
           </form>
         </section>
@@ -122,15 +121,19 @@
           <form class="row delivery-address-form form">
             <div class="mb-3 col-md-3">
               <input type="text" class="form-control" placeholder="Город" id="inputCity" name="city" />
+              <div class="city-valid-feedback feedback"></div>
             </div>
             <div class="mb-3 col-md-2">
               <input type="text" placeholder="Улица" class="form-control" id="inputStreet" name="street" />
+              <div class="street-valid-feedback feedback"></div>
             </div>
             <div class="mb-3 col-md-1">
               <input type="text" placeholder="Дом" class="form-control" id="inputHouse" name="house" />
+              <div class="house-valid-feedback feedback"></div>
             </div>
             <div class="mb-3 col-md-2">
               <input type="text" placeholder="Квартира" class="form-control" id="inputApartment" name="apartment" />
+              <div class="apartment-valid-feedback feedback"></div>
             </div>
             <div class="mb-3 form-check col-md-3">
               <input type="checkbox" class="form-check-input" id="apartmentCheck" />
@@ -145,6 +148,7 @@
             <img class="result-img" src="../img/ImgForBackground/result-img.png" />
             <p class="result-text">Доставим по указанному адресу в течение 30 минут</p>
           </div>
+          <div class="submit-feedback"></div>
           <button type="button" class="create-order-button col-md-3">Отправить заказ</button>
         </section>
       </main>
