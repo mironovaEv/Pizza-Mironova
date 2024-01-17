@@ -1,4 +1,4 @@
-function updateBasketSize () {
+function updateBasketSize() {
   const basket = JSON.parse(localStorage.getItem('basket')) ?? []
   let basketSize = 0
   for (const element of basket) {
@@ -12,7 +12,7 @@ function updateBasketSize () {
   }
 }
 
-async function loadBasket () {
+async function loadBasket() {
   const basket = JSON.parse(localStorage.getItem('basket')) ?? []
   for (const pizza of basket) {
     const response = await fetch('https://shift-winter-2023-backend.onrender.com/api/pizza/' + pizza.id)
@@ -36,9 +36,9 @@ async function loadBasket () {
   }
 }
 
-function deletePizzaItem (id) {
+function deletePizzaItem(id) {
   const basket = JSON.parse(localStorage.getItem('basket'))
-  const element = basket.find((x) => x.id == id)
+  const element = basket.find(x => x.id == id)
   const index = basket.indexOf(element)
   if (index >= 0) {
     basket.splice(index, 1)
@@ -47,14 +47,14 @@ function deletePizzaItem (id) {
   updateBasketSize()
 }
 
-function updateItemSum (id, count) {
+function updateItemSum(id, count) {
   const basket = JSON.parse(localStorage.getItem('basket'))
-  const element = basket.find((x) => x.id == id)
+  const element = basket.find(x => x.id == id)
   element.count = count
   localStorage.setItem('basket', JSON.stringify(basket))
   return element.count * element.price
 }
-function updateBasketSumAndCount () {
+function updateBasketSumAndCount() {
   const basket = JSON.parse(localStorage.getItem('basket'))
   let basketSum = 0
   let basketCount = 0
@@ -64,7 +64,7 @@ function updateBasketSumAndCount () {
   }
   return { sum: basketSum, count: basketCount }
 }
-function showResult () {
+function showResult() {
   $('.number-input').addClass('d-none')
   $('.delete-button').addClass('d-none')
   $('.form').addClass('d-none')
@@ -80,7 +80,7 @@ function showResult () {
   }
   localStorage.setItem('basket', null)
 }
-function checkLength (min, max, field) {
+function checkLength(min, max, field) {
   if (field.length < min) {
     return 'Минимальное количество символов: ' + min
   }
@@ -91,20 +91,21 @@ function checkLength (min, max, field) {
   }
 }
 
-function showError (field, message) {
+function showError(field, message) {
   $('[name="' + field.name + '"]').css('border', '1px red solid')
   $('.' + field.name + '-valid-feedback').text(message)
   $('.' + field.name + '-valid-feedback').css('color', 'red')
 }
-function showOk (field) {
+function showOk(field) {
   $('[name="' + field.name + '"]').css('border', '1px green solid')
   $('.' + field.name + '-valid-feedback').text('')
 }
-function validate (array) {
+function validate(array) {
   let flag = true
   for (const field of array) {
-    if (checkLength(field.min, field.max, field.value) != '') {
-      showError(field, checkLength(field.min, field.max, field.value))
+    const messageAboutNumberOfCharacters = checkLength(field.min, field.max, field.value)
+    if (messageAboutNumberOfCharacters != '') {
+      showError(field, messageAboutNumberOfCharacters)
       flag = false
     } else {
       showOk(field)
@@ -112,7 +113,7 @@ function validate (array) {
   }
   return flag
 }
-function checkBirthDate (birthDate) {
+function checkBirthDate(birthDate) {
   const today = new Date().toISOString()
   const datePlus18 = new Date(birthDate)
   datePlus18.setFullYear(datePlus18.getFullYear() + 18)
@@ -137,7 +138,7 @@ function checkBirthDate (birthDate) {
     return true
   }
 }
-function checkEmptyBasket () {
+function checkEmptyBasket() {
   const basket = JSON.parse(localStorage.getItem('basket')) ?? []
   if (basket.length < 1) {
     $('.submit-feedback').text('Ваша корзина пуста.')
@@ -149,7 +150,7 @@ function checkEmptyBasket () {
   }
 }
 
-async function createOrder () {
+async function createOrder() {
   const firstname = $('#inputFirstname').val().trim()
   const lastname = $('#inputLastname').val().trim()
   const city = $('#inputCity').val().trim()
@@ -173,7 +174,7 @@ async function createOrder () {
       { min: 2, max: 30, value: lastname, name: 'lastname' },
       { min: 2, max: 50, value: city, name: 'city' },
       { min: 2, max: 60, value: street, name: 'street' },
-      { min: 1, max: 10, value: house, name: 'house' }
+      { min: 1, max: 10, value: house, name: 'house' },
     ]) &&
     checkApartment &&
     checkDate &&
@@ -197,24 +198,24 @@ async function createOrder () {
           firstname,
           lastName: lastname,
           birthDate,
-          registrationAddress
+          registrationAddress,
         },
         address: {
           city,
           street,
           house,
           apartment,
-          comment
-        }
-      }
+          comment,
+        },
+      },
     }
     const url = 'https://shift-winter-2023-backend.onrender.com/api/pizza/createOrder'
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
     if (response.ok) {
       showResult()
